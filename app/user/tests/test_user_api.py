@@ -11,6 +11,7 @@ CREATE_USER_URL = reverse('user:create')
 TOKEN_URL = reverse('user:token')
 ME_URL = reverse('user:me')
 
+
 def create_user(**params):
     """create and return a new user"""
     return get_user_model().objects.create_user(**params)
@@ -129,7 +130,8 @@ class PrivateUserApiTest(TestCase):
         """Test POST is not allowed for the me endpoint"""
         response = self.client.post(ME_URL, {})
 
-        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response.status_code,
+                         status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_update_user_profile(self):
         """Test updating the user profile for authenticated user"""
@@ -143,4 +145,3 @@ class PrivateUserApiTest(TestCase):
         self.assertEqual(self.user.name, payload['name'])
         self.assertTrue(self.user.check_password(payload['password']))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-
