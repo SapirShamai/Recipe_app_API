@@ -1,6 +1,7 @@
 
 # Recipe API Project
 
+The recipe API is a tool to manage and label your recipes.
 
 In this project I covered:
  - Setting up a project using Docker configuration
